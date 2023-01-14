@@ -13,5 +13,6 @@
     <color name="etBackground">#034070</color>
     <color name="green_oval">#04EB0D</color>
     <color name="yellow_oval">#DCF116</color>
+    <color name="background">#B2D9F8</color>
 
 </resources>
