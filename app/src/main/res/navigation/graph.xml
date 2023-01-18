@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_editFragment_to_homeFragment2"
             app:destination="@id/homeFragment2" />
+        <argument
+            android:name="data"
+            app:argType="com.example.notes.Model.Notes" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment2"

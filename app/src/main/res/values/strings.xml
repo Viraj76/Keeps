@@ -15,4 +15,9 @@
     <string name="no">No</string>
     <string name="todo">TODO</string>
     <string name="todoo">TODO</string>
+    <string name="all">All</string>
+    <string name="alll">All</string>
+    <string name="high">High</string>
+    <string name="medium">Medium</string>
+    <string name="low">Low</string>
 </resources>

@@ -15,15 +15,15 @@ class NotesViewModel(application: Application) :AndroidViewModel(application){
         repository=NotesRepository(dao)
     }
 
-    suspend fun addNotes(notes: Notes){
+     fun addNotes(notes: Notes){
         repository.insertNotes(notes)
     }
 
-    suspend fun getNotes(): LiveData<List<Notes>> = repository.getAllNotes()
-    suspend fun deleteNotes(id:Int){
+     fun getNotes(): LiveData<List<Notes>> = repository.getAllNotes()
+     fun deleteNotes(id:Int){
         repository.deleteNotes(id)
     }
-    suspend fun updateNotes(notes:Notes){
+     fun updateNotes(notes:Notes){
         repository.updateNotes(notes)
     }
 

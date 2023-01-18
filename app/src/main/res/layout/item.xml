@@ -53,7 +53,7 @@
                 android:textColor="#F8F9F9"
                 android:textStyle="bold"
                 android:fontFamily="@font/font_two"
-                android:textSize="20sp"/>
+                android:textSize="12sp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
