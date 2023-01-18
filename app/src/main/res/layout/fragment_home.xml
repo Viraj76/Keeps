@@ -24,35 +24,59 @@
 
 
             <TextView
+                android:id="@+id/filterAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/alll"
-                android:textColor="@color/etBackground"
-                android:textSize="25sp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:background="@drawable/select_backgound"
+                android:textColor="@color/bg"
+                android:textSize="15sp"
                 />
             <TextView
+                android:id="@+id/filterHigh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/high"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+                android:background="@drawable/select_backgound"
+                android:layout_marginStart="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:layout_marginEnd="10dp"
                 android:textColor="@color/red"
-                android:textSize="25sp"
+                android:textSize="15sp"
                 />
             <TextView
+                android:id="@+id/filterMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/medium"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:background="@drawable/select_backgound"
                 android:textColor="@color/yellow_oval"
-                android:textSize="25sp"
+                android:textSize="15sp"
                 />
             <TextView
+                android:id="@+id/filterLow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/low"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:background="@drawable/select_backgound"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
                 android:textColor="@color/green_oval"
-                android:layout_marginStart="20dp"
-                android:textSize="25sp"
+                android:layout_marginStart="10dp"
+                android:textSize="15sp"
                 />
 
         </LinearLayout>

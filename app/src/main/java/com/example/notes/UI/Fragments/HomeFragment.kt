@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.notes.R
 import com.example.notes.UI.Adapter.NotesAdapter
 import com.example.notes.ViewModel.NotesViewModel
@@ -22,10 +24,35 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
 
+        val staggeredGridLayoutManager = (StaggeredGridLayoutManager(2,LinearLayoutManager.VERTICAL))
+        binding.rvShowAllNotes.layoutManager=staggeredGridLayoutManager
+
         viewModel.getNotes().observe(viewLifecycleOwner){
-            binding.rvShowAllNotes.layoutManager = GridLayoutManager(requireContext(),2)
             binding.rvShowAllNotes.adapter=NotesAdapter(requireContext(),it)
         }
+
+        binding.filterAll.setOnClickListener {
+            viewModel.getNotes().observe(viewLifecycleOwner){
+                binding.rvShowAllNotes.adapter=NotesAdapter(requireContext(),it)
+            }
+        }
+        binding.filterHigh.setOnClickListener {
+            viewModel.getHighNotes().observe(viewLifecycleOwner){
+                binding.rvShowAllNotes.adapter=NotesAdapter(requireContext(),it)
+            }
+        }
+        binding.filterMedium.setOnClickListener {
+            viewModel.getMediumNotes().observe(viewLifecycleOwner){
+                binding.rvShowAllNotes.adapter=NotesAdapter(requireContext(),it)
+            }
+        }
+        binding.filterLow.setOnClickListener {
+            viewModel.getLowNotes().observe(viewLifecycleOwner){
+                binding.rvShowAllNotes.adapter=NotesAdapter(requireContext(),it)
+            }
+        }
+
+
         binding.fbCreate.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_homeFragment2_to_createFragment2)
         }
