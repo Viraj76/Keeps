@@ -9,8 +9,16 @@ import com.example.notes.R
 import com.example.notes.UI.Fragments.HomeFragmentDirections
 import com.example.notes.databinding.ItemBinding
 
-class NotesAdapter(val context: Context, private val notesList: List<Notes>) :
+class NotesAdapter(val context: Context, private var notesList: List<Notes>) :
     RecyclerView.Adapter<NotesAdapter.notesViewHolder>() {
+
+
+
+//    fun filtering(newFilteredList: ArrayList<Notes>) {
+//        notesList = newFilteredList
+//        notifyDataSetChanged()
+//    }
+
     class notesViewHolder(val binding: ItemBinding) : RecyclerView.ViewHolder(binding.root)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): notesViewHolder {
         return notesViewHolder(

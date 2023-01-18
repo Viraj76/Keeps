@@ -97,12 +97,13 @@
             android:id="@+id/fbCreate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="21dp"
             android:layout_marginEnd="16dp"
             android:src="@drawable/ic_baseline_add_24"
             android:theme="@style/plusIconColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+
             app:tint="#FFFFFF" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
