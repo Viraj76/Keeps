@@ -81,7 +81,6 @@ class EditFragment : Fragment() {
 
         return binding.root
     }
-
     private fun updateNotes(it:View) {
         val title = binding.etEditTitle.text.toString()
         val subTitle = binding.etEditSubtitle.text.toString()
@@ -89,39 +88,37 @@ class EditFragment : Fragment() {
         val calendar: Calendar = Calendar.getInstance()
         val simpleDateFormat = SimpleDateFormat("MMMM dd, h:mm a")
         val dateTime = simpleDateFormat.format(calendar.time)
-        val data = Notes(oldNotes.data.id
-            , title, subTitle, notes, dateTime.toString(), priority)
+        val data = Notes(oldNotes.data.id, title, subTitle, notes, dateTime.toString(), priority)
         viewModel.updateNotes(data)
         Toast.makeText(requireContext(), "Notes Updated Successfully", Toast.LENGTH_SHORT).show()
-        Navigation.findNavController(it!!).navigate(R.id.action_editFragment_to_homeFragment2)
+        Navigation.findNavController(it).navigate(R.id.action_editFragment_to_homeFragment2)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.delete_menu,menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.deleteIcon){
-            val bottomSheetDialog  = BottomSheetDialog(requireContext())
-            bottomSheetDialog.setContentView(R.layout.dialogue_delete)
-            val textViewYes=bottomSheetDialog.findViewById<TextView>(R.id.dialogueYes)
-            val textViewNo=bottomSheetDialog.findViewById<TextView>(R.id.dialogueNo)
-
-            textViewYes?.setOnClickListener {
-                viewModel.deleteNotes(oldNotes.data.id!!)
-                bottomSheetDialog.dismiss()
-                Toast.makeText(requireContext(),"Note Deleted Successfully!",Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.action_editFragment_to_homeFragment2)
-            }
-
-            textViewNo?.setOnClickListener {
-                bottomSheetDialog.dismiss()
-            }
-
-
-            bottomSheetDialog.show()
-        }
-        return super.onOptionsItemSelected(item)
-    }
+//    @Deprecated("Deprecated in Java")
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        inflater.inflate(R.menu.delete_menu,menu)
+//        super.onCreateOptionsMenu(menu, inflater)
+//    }
+//
+//
+//    @Deprecated("Deprecated in Java")
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        if(item.itemId == R.id.deleteIcon){
+//            val bottomSheetDialog  = BottomSheetDialog(requireContext())
+//            bottomSheetDialog.setContentView(R.layout.dialogue_delete)
+//            val textViewYes=bottomSheetDialog.findViewById<TextView>(R.id.dialogueYes)
+//            val textViewNo=bottomSheetDialog.findViewById<TextView>(R.id.dialogueNo)
+//            textViewYes?.setOnClickListener {
+//                viewModel.deleteNotes(oldNotes.data.id!!)
+//                bottomSheetDialog.dismiss()
+//                Toast.makeText(requireContext(),"Note Deleted Successfully!",Toast.LENGTH_SHORT).show()
+//                findNavController().navigate(R.id.action_editFragment_to_homeFragment2)
+//            }
+//            textViewNo?.setOnClickListener {
+//                bottomSheetDialog.dismiss()
+//            }
+//            bottomSheetDialog.show()
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
 }

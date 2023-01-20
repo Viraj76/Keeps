@@ -30,7 +30,6 @@ class HomeFragment : Fragment() {
 
         val staggeredGridLayoutManager = (StaggeredGridLayoutManager(2,LinearLayoutManager.VERTICAL))
         binding.rvShowAllNotes.layoutManager=staggeredGridLayoutManager
-        setHasOptionsMenu(true)
         viewModel.getNotes().observe(viewLifecycleOwner){
             oldMyNotes = it as ArrayList<Notes>
             adapter = NotesAdapter(requireContext(),it)
@@ -59,6 +58,7 @@ class HomeFragment : Fragment() {
             }
         }
         binding.filterLow.setOnClickListener {
+
             viewModel.getLowNotes().observe(viewLifecycleOwner){
                 oldMyNotes = it as ArrayList<Notes>
                 adapter = NotesAdapter(requireContext(),it)
@@ -73,33 +73,37 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.search_menu, menu)
-        val item = menu.findItem(R.id.app_bar_search)
-        val searchView = item.actionView as SearchView
-        searchView.queryHint = "Enter Notes Here..."
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                notesFiltering(newText)
-                return true
-            }
-        })
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-    private fun notesFiltering(newText: String?) {
-        val newFilteredList = arrayListOf<Notes>()
-        for(i in oldMyNotes){
-            if(i.title.contains(newText!!) || i.subTitle.contains(newText)){
-                newFilteredList.add(i)
-            }
-        }
-        adapter.filtering(newFilteredList)
-    }
+//    @Deprecated("Deprecated in Java")
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        inflater.inflate(R.menu.search_menu, menu)
+//        super.onCreateOptionsMenu(menu, inflater)
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        val item = menu.findItem(R.id.app_bar_search)
+//        val searchView = item.actionView as SearchView
+//        searchView.queryHint = "Enter Notes Here..."
+//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String?): Boolean {
+//                return false
+//            }
+//            override fun onQueryTextChange(newText: String?): Boolean {
+//                notesFiltering(newText)
+//                return true
+//            }
+//        })
+//        return super.onOptionsItemSelected(item)
+//    }
+//
+//    private fun notesFiltering(newText: String?) {
+//        val newFilteredList = arrayListOf<Notes>()
+//        for(i in oldMyNotes){
+//            if(i.title.contains(newText!!) || i.subTitle.contains(newText)){
+//                newFilteredList.add(i)
+//            }
+//        }
+//        adapter.filtering(newFilteredList)
+//    }
 
 }
