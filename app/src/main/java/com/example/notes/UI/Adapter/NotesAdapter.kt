@@ -14,10 +14,10 @@ class NotesAdapter(val context: Context, private var notesList: List<Notes>) :
 
 
 
-//    fun filtering(newFilteredList: ArrayList<Notes>) {
-//        notesList = newFilteredList
-//        notifyDataSetChanged()
-//    }
+    fun filtering(newFilteredList: ArrayList<Notes>) {
+        notesList = newFilteredList
+        notifyDataSetChanged()
+    }
 
     class notesViewHolder(val binding: ItemBinding) : RecyclerView.ViewHolder(binding.root)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): notesViewHolder {

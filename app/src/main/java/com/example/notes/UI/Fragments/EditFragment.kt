@@ -111,6 +111,7 @@ class EditFragment : Fragment() {
             textViewYes?.setOnClickListener {
                 viewModel.deleteNotes(oldNotes.data.id!!)
                 bottomSheetDialog.dismiss()
+                Toast.makeText(requireContext(),"Note Deleted Successfully!",Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_editFragment_to_homeFragment2)
             }
 
