@@ -4,8 +4,8 @@
 
     <item
         android:id="@+id/searchIcon"
-        android:title="@string/delete"
+        android:title="@string/search"
         app:showAsAction="always"
         android:icon="@drawable/ic_baseline_search_24"
-        />
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
 </menu>

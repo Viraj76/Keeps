@@ -15,6 +15,8 @@ import com.example.notes.R
 import com.example.notes.UI.Adapter.NotesAdapter
 import com.example.notes.ViewModel.NotesViewModel
 import com.example.notes.databinding.FragmentHomeBinding
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class HomeFragment : Fragment() {
@@ -73,37 +75,38 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
+        super.onCreate(savedInstanceState)
+    }
 
-//    @Deprecated("Deprecated in Java")
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        inflater.inflate(R.menu.search_menu, menu)
-//        super.onCreateOptionsMenu(menu, inflater)
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        val item = menu.findItem(R.id.app_bar_search)
-//        val searchView = item.actionView as SearchView
-//        searchView.queryHint = "Enter Notes Here..."
-//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                return false
-//            }
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                notesFiltering(newText)
-//                return true
-//            }
-//        })
-//        return super.onOptionsItemSelected(item)
-//    }
-//
-//    private fun notesFiltering(newText: String?) {
-//        val newFilteredList = arrayListOf<Notes>()
-//        for(i in oldMyNotes){
-//            if(i.title.contains(newText!!) || i.subTitle.contains(newText)){
-//                newFilteredList.add(i)
-//            }
-//        }
-//        adapter.filtering(newFilteredList)
-//    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.search_menu,menu)
+        val item = menu.findItem(R.id.searchIcon)
+
+            val searchView = item.actionView as SearchView
+            searchView.queryHint = "Enter Notes Here..."
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
+                }
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    notesFiltering(newText)
+                    return true
+                }
+            })
+
+
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+    private fun notesFiltering(newText: String?) {
+        val newFilteredList = arrayListOf<Notes>()
+        for(i in oldMyNotes){
+            if(i.title.contains(newText!!) ||i.subTitle.contains(newText)){
+                newFilteredList.add(i)
+            }
+        }
+        adapter.filtering(newFilteredList)
+    }
 
 }
