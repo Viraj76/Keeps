@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.notes.Model.Notes
 import com.example.notes.R
@@ -49,13 +50,18 @@ class CreateFragment : Fragment() {
             binding.greenOval.setImageResource(0)
         }
         binding.fbtnDone.setOnClickListener {
+            lifecycleScope.launch{
                 createNote(it)
+            }
+
+
+
 
         }
         return binding.root
     }
 
-    private  fun createNote(it: View?) {
+    private suspend fun createNote(it: View?) {
 
         val title = binding.etTitle.text.toString()
         val subTitle = binding.etSubtitle.text.toString()

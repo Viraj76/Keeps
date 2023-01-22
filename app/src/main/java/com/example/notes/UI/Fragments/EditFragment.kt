@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -16,6 +17,7 @@ import com.example.notes.ViewModel.NotesViewModel
 import com.example.notes.databinding.FragmentEditBinding
 import com.example.notes.databinding.FragmentHomeBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -112,7 +114,9 @@ class EditFragment : Fragment() {
             val textViewYes=bottomSheetDialog.findViewById<TextView>(R.id.dialogueYes)
             val textViewNo=bottomSheetDialog.findViewById<TextView>(R.id.dialogueNo)
             textViewYes?.setOnClickListener {
-                viewModel.deleteNotes(oldNotes.data.id!!)
+                lifecycleScope.launch{
+                    viewModel.deleteNotes(oldNotes.data.id!!)
+                }
                 bottomSheetDialog.dismiss()
                 Toast.makeText(requireContext(),"Note Deleted Successfully!",Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_editFragment_to_homeFragment2)

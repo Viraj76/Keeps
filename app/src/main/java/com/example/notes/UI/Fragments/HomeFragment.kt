@@ -7,6 +7,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -15,6 +16,7 @@ import com.example.notes.R
 import com.example.notes.UI.Adapter.NotesAdapter
 import com.example.notes.ViewModel.NotesViewModel
 import com.example.notes.databinding.FragmentHomeBinding
+import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -32,40 +34,54 @@ class HomeFragment : Fragment() {
 
         val staggeredGridLayoutManager = (StaggeredGridLayoutManager(2,LinearLayoutManager.VERTICAL))
         binding.rvShowAllNotes.layoutManager=staggeredGridLayoutManager
-        viewModel.getNotes().observe(viewLifecycleOwner){
-            oldMyNotes = it as ArrayList<Notes>
-            adapter = NotesAdapter(requireContext(),it)
-            binding.rvShowAllNotes.adapter= adapter
-        }
-
-        binding.filterAll.setOnClickListener {
+        lifecycleScope.launch{
             viewModel.getNotes().observe(viewLifecycleOwner){
                 oldMyNotes = it as ArrayList<Notes>
                 adapter = NotesAdapter(requireContext(),it)
-                binding.rvShowAllNotes.adapter=adapter
+                binding.rvShowAllNotes.adapter= adapter
             }
+        }
+
+
+        binding.filterAll.setOnClickListener {
+            lifecycleScope.launch {
+                viewModel.getNotes().observe(viewLifecycleOwner){
+                    oldMyNotes = it as ArrayList<Notes>
+                    adapter = NotesAdapter(requireContext(),it)
+                    binding.rvShowAllNotes.adapter=adapter
+                }
+            }
+
         }
         binding.filterHigh.setOnClickListener {
-            viewModel.getHighNotes().observe(viewLifecycleOwner){
-                oldMyNotes = it as ArrayList<Notes>
-                adapter = NotesAdapter(requireContext(),it)
-                binding.rvShowAllNotes.adapter= adapter
+            lifecycleScope.launch{
+                viewModel.getHighNotes().observe(viewLifecycleOwner){
+                    oldMyNotes = it as ArrayList<Notes>
+                    adapter = NotesAdapter(requireContext(),it)
+                    binding.rvShowAllNotes.adapter= adapter
+                }
             }
+
         }
         binding.filterMedium.setOnClickListener {
-            viewModel.getMediumNotes().observe(viewLifecycleOwner){
-                oldMyNotes = it as ArrayList<Notes>
-                adapter = NotesAdapter(requireContext(),it)
-                binding.rvShowAllNotes.adapter= adapter
+            lifecycleScope.launch{
+                viewModel.getMediumNotes().observe(viewLifecycleOwner){
+                    oldMyNotes = it as ArrayList<Notes>
+                    adapter = NotesAdapter(requireContext(),it)
+                    binding.rvShowAllNotes.adapter= adapter
+                }
             }
+
         }
         binding.filterLow.setOnClickListener {
-
-            viewModel.getLowNotes().observe(viewLifecycleOwner){
-                oldMyNotes = it as ArrayList<Notes>
-                adapter = NotesAdapter(requireContext(),it)
-                binding.rvShowAllNotes.adapter= adapter
+            lifecycleScope.launch{
+                viewModel.getLowNotes().observe(viewLifecycleOwner){
+                    oldMyNotes = it as ArrayList<Notes>
+                    adapter = NotesAdapter(requireContext(),it)
+                    binding.rvShowAllNotes.adapter= adapter
+                }
             }
+
         }
 
 
