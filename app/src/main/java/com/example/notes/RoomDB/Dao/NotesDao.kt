@@ -12,17 +12,17 @@ import com.example.notes.Model.Notes
 interface NotesDao {
 
     @Query("SELECT * FROM Notes")
-    suspend fun getNotes():LiveData<List<Notes>>
+     fun getNotes():LiveData<List<Notes>>
 
 
     @Query("SELECT * FROM Notes WHERE priority = 3")
-    suspend fun getHighNotes():LiveData<List<Notes>>
+     fun getHighNotes():LiveData<List<Notes>>
 
     @Query("SELECT * FROM Notes WHERE priority = 2")
-    suspend fun getMediumNotes():LiveData<List<Notes>>
+     fun getMediumNotes():LiveData<List<Notes>>
 
     @Query("SELECT * FROM Notes WHERE priority = 1")
-    suspend fun getLowNotes():LiveData<List<Notes>>
+     fun getLowNotes():LiveData<List<Notes>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNotes(notes :Notes)
