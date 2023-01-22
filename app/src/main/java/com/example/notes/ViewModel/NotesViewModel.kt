@@ -19,10 +19,10 @@ class NotesViewModel(application: Application) :AndroidViewModel(application){
         repository.insertNotes(notes)
     }
 
-     suspend fun getNotes(): LiveData<List<Notes>> = repository.getAllNotes()
-    suspend fun getHighNotes(): LiveData<List<Notes>> = repository.getHighNotes()
-    suspend fun  getMediumNotes(): LiveData<List<Notes>> = repository.getMediumNotes()
-    suspend fun getLowNotes(): LiveData<List<Notes>> = repository.getLowNotes()
+      fun getNotes(): LiveData<List<Notes>> = repository.getAllNotes()
+     fun getHighNotes(): LiveData<List<Notes>> = repository.getHighNotes()
+     fun  getMediumNotes(): LiveData<List<Notes>> = repository.getMediumNotes()
+     fun getLowNotes(): LiveData<List<Notes>> = repository.getLowNotes()
 
 
      suspend fun deleteNotes(id:Int){

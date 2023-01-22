@@ -53,10 +53,6 @@ class CreateFragment : Fragment() {
             lifecycleScope.launch{
                 createNote(it)
             }
-
-
-
-
         }
         return binding.root
     }
