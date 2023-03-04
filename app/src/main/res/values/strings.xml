@@ -22,4 +22,5 @@
     <string name="low">Low</string>
     <string name="delete">Delete</string>
     <string name="search">Search</string>
+    <string name="hey_custom_toast">Hey custom toast</string>
 </resources>
