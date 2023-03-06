@@ -14,14 +14,14 @@
         android:theme="@style/Theme.Notes"
         tools:targetApi="31">
         <activity
-            android:name=".SIgnUPActivity"
+            android:name=".UI.Activity.SIgnUPActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SignInActivity"
+            android:name=".UI.Activity.SignInActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
