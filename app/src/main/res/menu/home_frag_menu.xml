@@ -12,5 +12,5 @@
         android:title="@string/logout"
         android:id="@+id/logoutIcon"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/logout" />
+        android:icon="@drawable/ic_baseline_login_24" />
 </menu>

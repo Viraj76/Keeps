@@ -39,6 +39,7 @@ class SignInActivity : AppCompatActivity() {
                     val intent = Intent(this,MainActivity::class.java)
                     startActivity(intent)
                     Toast.makeText(this,"Signed In Successfully!",Toast.LENGTH_SHORT).show()
+                    finish()
                 }
                 else{
                     Toast.makeText(this,it.exception.toString(),Toast.LENGTH_SHORT).show()

@@ -1,23 +1,27 @@
 package com.example.notes.UI.Fragments
 
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 ;
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.notes.Model.Notes
 import com.example.notes.R
+import com.example.notes.UI.Activity.SignInActivity
 import com.example.notes.UI.Adapter.NotesAdapter
 import com.example.notes.ViewModel.NotesViewModel
 import com.example.notes.databinding.FragmentHomeBinding
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
-import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -26,12 +30,13 @@ class HomeFragment : Fragment() {
     private val viewModel: NotesViewModel by viewModels()
     var oldMyNotes = arrayListOf<Notes>()
     lateinit var adapter : NotesAdapter
+    private lateinit var  firebaseAuth: FirebaseAuth
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
-
+        firebaseAuth = FirebaseAuth.getInstance()
         val staggeredGridLayoutManager = (StaggeredGridLayoutManager(2,LinearLayoutManager.VERTICAL))
         binding.rvShowAllNotes.layoutManager=staggeredGridLayoutManager
         lifecycleScope.launch{
@@ -97,8 +102,7 @@ class HomeFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.search_menu,menu)
-        inflater.inflate(R.menu.logout_menu,menu)
+        inflater.inflate(R.menu.home_frag_menu,menu)
         val item = menu.findItem(R.id.searchIcon)
             val searchView = item.actionView as SearchView
             searchView.queryHint = "Title OR Subtitle..."
@@ -111,14 +115,31 @@ class HomeFragment : Fragment() {
                     return true
                 }
             })
-        val logoutIcon = menu.findItem(R.id.logoutIcon)
 
         super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id  = item.itemId
-        if(id == R.id.searchIcon){
+
+        when(item.itemId){
+            R.id.logoutIcon ->{
+                val builder = AlertDialog.Builder(requireActivity())
+                val alertDialog = builder.create()
+
+                builder
+                    .setTitle("Log Out")
+                    .setMessage("Are you sure you want to log out?")
+                    .setPositiveButton("Yes"){dialogInterface,which->
+                        FirebaseAuth.getInstance().signOut()
+                        val intent = Intent(requireContext(),SignInActivity::class.java)
+                        startActivity(intent)
+                    }
+                    .setNegativeButton("No"){dialogInterface, which->
+                        alertDialog.dismiss()
+                    }
+                    .show()
+                    .setCancelable(false)
+            }
 
         }
         return super.onOptionsItemSelected(item)
