@@ -3,12 +3,14 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_margin="10dp"
+    android:background="@drawable/bsd_bg"
     android:layout_height="match_parent">
 
     <View
         android:layout_width="130dp"
         android:layout_height="5dp"
         android:background="@color/etBackground"
+
         android:layout_gravity="center"
         android:layout_margin="10dp"
         />

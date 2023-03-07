@@ -98,8 +98,8 @@ class HomeFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.search_menu,menu)
+        inflater.inflate(R.menu.logout_menu,menu)
         val item = menu.findItem(R.id.searchIcon)
-
             val searchView = item.actionView as SearchView
             searchView.queryHint = "Title OR Subtitle..."
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -111,10 +111,20 @@ class HomeFragment : Fragment() {
                     return true
                 }
             })
-
+        val logoutIcon = menu.findItem(R.id.logoutIcon)
 
         super.onCreateOptionsMenu(menu, inflater)
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id  = item.itemId
+        if(id == R.id.searchIcon){
+
+        }
+        return super.onOptionsItemSelected(item)
+
+    }
+
     private fun notesFiltering(newText: String?) {
         val newFilteredList = arrayListOf<Notes>()
         for(i in oldMyNotes){
@@ -124,5 +134,6 @@ class HomeFragment : Fragment() {
         }
         adapter.filtering(newFilteredList)
     }
+
 
 }
