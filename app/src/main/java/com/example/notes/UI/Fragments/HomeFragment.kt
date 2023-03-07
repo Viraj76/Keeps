@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 ;
+import androidx.core.app.NotificationCompat.getColor
+import androidx.core.content.res.ResourcesCompat.getColor
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -26,7 +28,7 @@ import kotlin.collections.ArrayList
 
 
 class HomeFragment : Fragment() {
-    lateinit var binding :FragmentHomeBinding
+    lateinit var binding :com.example.notes.databinding.FragmentHomeBinding
     private val viewModel: NotesViewModel by viewModels()
     var oldMyNotes = arrayListOf<Notes>()
     lateinit var adapter : NotesAdapter
@@ -49,6 +51,10 @@ class HomeFragment : Fragment() {
 
 
         binding.filterAll.setOnClickListener {
+            binding.filterMedium.setBackgroundResource(R.drawable.select_backgound)
+            binding.filterHigh.setBackgroundResource(R.drawable.select_backgound)
+            binding.filterLow.setBackgroundResource(R.drawable.select_backgound)
+            binding.filterAll.setBackgroundResource(R.drawable.tv_bg)
             lifecycleScope.launch {
                 viewModel.getNotes().observe(viewLifecycleOwner){
                     oldMyNotes = it as ArrayList<Notes>
@@ -59,6 +65,10 @@ class HomeFragment : Fragment() {
 
         }
         binding.filterHigh.setOnClickListener {
+            binding.filterMedium.setBackgroundResource(R.drawable.select_backgound)
+            binding.filterHigh.setBackgroundResource(R.drawable.tv_bg)
+            binding.filterLow.setBackgroundResource(R.drawable.select_backgound)
+            binding.filterAll.setBackgroundResource(R.drawable.select_backgound)
             lifecycleScope.launch{
                 viewModel.getHighNotes().observe(viewLifecycleOwner){
                     oldMyNotes = it as ArrayList<Notes>
@@ -69,6 +79,11 @@ class HomeFragment : Fragment() {
 
         }
         binding.filterMedium.setOnClickListener {
+            binding.filterMedium.setBackgroundResource(R.drawable.tv_bg)
+            binding.filterHigh.setBackgroundResource(R.drawable.select_backgound)
+            binding.filterLow.setBackgroundResource(R.drawable.select_backgound)
+            binding.filterAll.setBackgroundResource(R.drawable.select_backgound)
+
             lifecycleScope.launch{
                 viewModel.getMediumNotes().observe(viewLifecycleOwner){
                     oldMyNotes = it as ArrayList<Notes>
@@ -79,6 +94,10 @@ class HomeFragment : Fragment() {
 
         }
         binding.filterLow.setOnClickListener {
+            binding.filterMedium.setBackgroundResource(R.drawable.select_backgound)
+            binding.filterHigh.setBackgroundResource(R.drawable.select_backgound)
+            binding.filterLow.setBackgroundResource(R.drawable.tv_bg)
+            binding.filterAll.setBackgroundResource(R.drawable.select_backgound)
             lifecycleScope.launch{
                 viewModel.getLowNotes().observe(viewLifecycleOwner){
                     oldMyNotes = it as ArrayList<Notes>

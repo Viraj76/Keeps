@@ -9,10 +9,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
-    
-    @Deprecated("Deprecated in Java", ReplaceWith("moveTaskToBack(true)"))
-    override fun onBackPressed() {
-        //  super.onBackPressed();
-        moveTaskToBack(true)
-    }
+
+
+
 }
