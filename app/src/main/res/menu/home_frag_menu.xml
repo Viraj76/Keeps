@@ -8,4 +8,9 @@
         app:showAsAction="always"
         android:icon="@drawable/ic_baseline_search_24"
         app:actionViewClass="androidx.appcompat.widget.SearchView" />
+    <item
+        android:title="@string/logout"
+        android:id="@+id/logoutIcon"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/logout" />
 </menu>
