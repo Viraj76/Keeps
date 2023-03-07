@@ -3,8 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/background"
     android:layout_height="match_parent"
     tools:context=".UI.Activity.SIgnUPActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sing Up.."
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/emailLayout"
+       app:layout_constraintBottom_toTopOf="@id/emailLayout"
+        android:textColor="#30373D"
+        android:layout_marginBottom="30dp"
+
+
+        />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailLayout"
@@ -12,7 +27,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
+
         android:layout_marginTop="250dp"
+
         app:boxStrokeColor="@color/etBackground"
         app:hintTextColor="@color/etBackground"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,7 +101,7 @@
         android:layout_marginHorizontal="16dp"
         android:background="@color/etBackground"
         android:text="Sign Up"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,10 +109,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmPasswordLayout" />
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvSignInOption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textColor="#30373D"
         android:text="@string/already_registered_sign_in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
