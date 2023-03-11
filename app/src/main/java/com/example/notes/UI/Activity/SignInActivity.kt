@@ -10,14 +10,18 @@ import com.example.notes.databinding.ItemBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class SignInActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivitySignInBinding
     private lateinit var firebaseAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         firebaseAuth = FirebaseAuth.getInstance()
 
+        //Going to signUp Activity
         binding.textView.setOnClickListener {
             val intent = Intent(this,SIgnUPActivity::class.java)
             startActivity(intent)

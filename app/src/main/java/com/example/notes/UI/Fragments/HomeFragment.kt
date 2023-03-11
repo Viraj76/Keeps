@@ -28,7 +28,7 @@ import kotlin.collections.ArrayList
 
 
 class HomeFragment : Fragment() {
-    lateinit var binding :com.example.notes.databinding.FragmentHomeBinding
+    lateinit var binding :FragmentHomeBinding
     private val viewModel: NotesViewModel by viewModels()
     var oldMyNotes = arrayListOf<Notes>()
     lateinit var adapter : NotesAdapter
@@ -37,10 +37,15 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         firebaseAuth = FirebaseAuth.getInstance()
+
         val staggeredGridLayoutManager = (StaggeredGridLayoutManager(2,LinearLayoutManager.VERTICAL))
         binding.rvShowAllNotes.layoutManager=staggeredGridLayoutManager
+
+
+        //Listing all notes
         lifecycleScope.launch{
             viewModel.getNotes().observe(viewLifecycleOwner){
                 oldMyNotes = it as ArrayList<Notes>
@@ -49,7 +54,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-
+        //Filter All
         binding.filterAll.setOnClickListener {
             binding.filterMedium.setBackgroundResource(R.drawable.select_backgound)
             binding.filterHigh.setBackgroundResource(R.drawable.select_backgound)
@@ -62,8 +67,9 @@ class HomeFragment : Fragment() {
                     binding.rvShowAllNotes.adapter=adapter
                 }
             }
-
         }
+
+        //Filter High
         binding.filterHigh.setOnClickListener {
             binding.filterMedium.setBackgroundResource(R.drawable.select_backgound)
             binding.filterHigh.setBackgroundResource(R.drawable.tv_bg)
@@ -76,8 +82,9 @@ class HomeFragment : Fragment() {
                     binding.rvShowAllNotes.adapter= adapter
                 }
             }
-
         }
+
+        //Filter Medium
         binding.filterMedium.setOnClickListener {
             binding.filterMedium.setBackgroundResource(R.drawable.tv_bg)
             binding.filterHigh.setBackgroundResource(R.drawable.select_backgound)
@@ -91,8 +98,9 @@ class HomeFragment : Fragment() {
                     binding.rvShowAllNotes.adapter= adapter
                 }
             }
-
         }
+
+        //Filter Low
         binding.filterLow.setOnClickListener {
             binding.filterMedium.setBackgroundResource(R.drawable.select_backgound)
             binding.filterHigh.setBackgroundResource(R.drawable.select_backgound)
@@ -105,13 +113,13 @@ class HomeFragment : Fragment() {
                     binding.rvShowAllNotes.adapter= adapter
                 }
             }
-
         }
 
-
+        //Navigating to create new notes
         binding.fbCreate.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_homeFragment2_to_createFragment2)
         }
+
         return binding.root
     }
 
@@ -122,6 +130,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.home_frag_menu,menu)
+
         val item = menu.findItem(R.id.searchIcon)
             val searchView = item.actionView as SearchView
             searchView.queryHint = "Title OR Subtitle..."
@@ -159,10 +168,8 @@ class HomeFragment : Fragment() {
                     .show()
                     .setCancelable(false)
             }
-
         }
         return super.onOptionsItemSelected(item)
-
     }
 
     private fun notesFiltering(newText: String?) {
@@ -174,6 +181,4 @@ class HomeFragment : Fragment() {
         }
         adapter.filtering(newFilteredList)
     }
-
-
 }

@@ -16,4 +16,3 @@ data class Notes(
     var priority: String
 
 ): Parcelable
-//    : Parcelable

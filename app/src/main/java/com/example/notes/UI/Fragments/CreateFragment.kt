@@ -22,15 +22,20 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class CreateFragment : Fragment() {
+
     lateinit var binding: FragmentCreateBinding
     private var priority: String = "1"
     private val viewModel: NotesViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentCreateBinding.inflate(layoutInflater, container, false)
+
         binding.greenOval.setImageResource(R.drawable.done)
+
+        //Low
         binding.greenOval.setOnClickListener {
             priority ="1"
             binding.greenOval.setImageResource(R.drawable.done)
@@ -38,6 +43,8 @@ class CreateFragment : Fragment() {
             binding.redOval.setImageResource(0)
             Toast.makeText(requireContext(),"Priority : Low",Toast.LENGTH_SHORT).show()
         }
+
+        //Priority Medium
         binding.yellowOval.setOnClickListener {
             priority ="2"
             binding.yellowOval.setImageResource(R.drawable.done)
@@ -45,6 +52,8 @@ class CreateFragment : Fragment() {
             binding.redOval.setImageResource(0)
             Toast.makeText(requireContext(),"Priority : Medium",Toast.LENGTH_SHORT).show()
         }
+
+        //Priority High
         binding.redOval.setOnClickListener {
             priority ="3"
             binding.redOval.setImageResource(R.drawable.done)
@@ -52,13 +61,16 @@ class CreateFragment : Fragment() {
             binding.greenOval.setImageResource(0)
             Toast.makeText(requireContext(),"Priority : High",Toast.LENGTH_SHORT).show()
         }
+
         binding.fbtnDone.setOnClickListener {
             lifecycleScope.launch{
                 createNote(it)
             }
         }
+
         return binding.root
     }
+
     private suspend fun createNote(it: View?) {
 
         val title = binding.etTitle.text.toString()
@@ -67,6 +79,7 @@ class CreateFragment : Fragment() {
         val calendar: Calendar = Calendar.getInstance()
         val simpleDateFormat = SimpleDateFormat("MMMM dd, h:mm a")
         val dateTime = simpleDateFormat.format(calendar.time)
+
         if(title != ""){
             val data = Notes(null, title, subTitle, notes, dateTime.toString(), priority)
             viewModel.addNotes(data)
@@ -76,6 +89,7 @@ class CreateFragment : Fragment() {
         else{
             Toast.makeText(requireContext(),"Please Give Some Title!",Toast.LENGTH_SHORT).show()
         }
+
     }
 
 
