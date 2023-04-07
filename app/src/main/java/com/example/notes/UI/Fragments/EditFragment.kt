@@ -17,6 +17,7 @@ import com.example.notes.ViewModel.NotesViewModel
 import com.example.notes.databinding.FragmentEditBinding
 import com.example.notes.databinding.FragmentHomeBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -90,7 +91,15 @@ class EditFragment : Fragment() {
         val calendar: Calendar = Calendar.getInstance()
         val simpleDateFormat = SimpleDateFormat("MMMM dd, h:mm a")
         val dateTime = simpleDateFormat.format(calendar.time)
-        val data = Notes(oldNotes.data.id, title, subTitle, notes, dateTime.toString(), priority)
+        val data = Notes(
+            id = oldNotes.data.id,
+            title = title,
+            subTitle = subTitle,
+            notes = notes,
+            date= dateTime.toString(),
+            priority = priority,
+            userId = FirebaseAuth.getInstance().currentUser!!.uid
+        )
         viewModel.updateNotes(data)
         Toast.makeText(requireContext(), "Notes Updated Successfully", Toast.LENGTH_SHORT).show()
         Navigation.findNavController(it).navigate(R.id.action_editFragment_to_homeFragment2)

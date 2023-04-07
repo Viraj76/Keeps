@@ -12,8 +12,6 @@ import com.example.notes.databinding.ItemBinding
 class NotesAdapter(val context: Context, private var notesList: List<Notes>) :
     RecyclerView.Adapter<NotesAdapter.notesViewHolder>() {
 
-
-
     fun filtering(newFilteredList: ArrayList<Notes>) {
         notesList = newFilteredList
         notifyDataSetChanged()

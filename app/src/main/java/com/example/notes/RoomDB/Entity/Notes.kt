@@ -13,6 +13,7 @@ data class Notes(
     var subTitle: String,
     var notes: String,
     var date: String,
-    var priority: String
+    var priority: String,
+    var userId: String
 
 ): Parcelable

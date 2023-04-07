@@ -9,8 +9,10 @@ import com.example.notes.databinding.ActivitySignUpactivityBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class SIgnUPActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivitySignUpactivityBinding
     private lateinit var firebaseAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpactivityBinding.inflate(layoutInflater)

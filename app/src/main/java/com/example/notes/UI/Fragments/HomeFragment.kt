@@ -1,5 +1,6 @@
 package com.example.notes.UI.Fragments
 
+
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
@@ -148,7 +149,6 @@ class HomeFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
         when(item.itemId){
             R.id.logoutIcon ->{
                 val builder = AlertDialog.Builder(requireActivity())

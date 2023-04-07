@@ -17,6 +17,7 @@ import com.example.notes.ViewModel.NotesViewModel
 import com.example.notes.databinding.ActivityMainBinding.inflate
 import com.example.notes.databinding.FragmentCreateBinding
 import com.example.notes.databinding.FragmentHomeBinding.inflate
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -79,9 +80,9 @@ class CreateFragment : Fragment() {
         val calendar: Calendar = Calendar.getInstance()
         val simpleDateFormat = SimpleDateFormat("MMMM dd, h:mm a")
         val dateTime = simpleDateFormat.format(calendar.time)
-
+        val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
         if(title != ""){
-            val data = Notes(null, title, subTitle, notes, dateTime.toString(), priority)
+            val data = Notes(null, title, subTitle, notes, dateTime.toString(), priority,currentUserId!!)
             viewModel.addNotes(data)
             Toast.makeText(requireContext(), "Notes Added Successfully", Toast.LENGTH_SHORT).show()
             Navigation.findNavController(it!!).navigate(R.id.action_createFragment2_to_homeFragment2)
