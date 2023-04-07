@@ -1,6 +1,7 @@
 package com.example.notes.Model
 
 import android.os.Parcelable
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
@@ -14,6 +15,7 @@ data class Notes(
     var notes: String,
     var date: String,
     var priority: String,
-    var userId: String
+    @ColumnInfo(name = "user_id")
+    var currentUserId: String
 
 ): Parcelable

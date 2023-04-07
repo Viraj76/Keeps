@@ -55,6 +55,10 @@ class HomeFragment : Fragment() {
             }
         }
 
+
+            binding.filterAll.setBackgroundResource(R.drawable.tv_bg)
+
+
         //Filter All
         binding.filterAll.setOnClickListener {
             binding.filterMedium.setBackgroundResource(R.drawable.select_backgound)
@@ -161,6 +165,7 @@ class HomeFragment : Fragment() {
                         FirebaseAuth.getInstance().signOut()
                         val intent = Intent(requireContext(),SignInActivity::class.java)
                         startActivity(intent)
+                        activity?.finish()
                     }
                     .setNegativeButton("No"){dialogInterface, which->
                         alertDialog.dismiss()

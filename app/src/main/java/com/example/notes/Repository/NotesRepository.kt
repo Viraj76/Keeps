@@ -6,13 +6,13 @@ import com.example.notes.Model.Notes
 
 class NotesRepository(private val dao:NotesDao) {
 
-      fun getAllNotes(): LiveData<List<Notes>> {
-        return dao.getNotes()
+      fun getAllNotes(currentUserId: String?): LiveData<List<Notes>> {
+        return dao.getNotes(currentUserId)
     }
 
-     fun getHighNotes(): LiveData<List<Notes>> = dao.getHighNotes()
-     fun  getMediumNotes(): LiveData<List<Notes>> = dao.getMediumNotes()
-     fun getLowNotes(): LiveData<List<Notes>> = dao.getLowNotes()
+     fun getHighNotes(currentUserId: String?): LiveData<List<Notes>> = dao.getHighNotes(currentUserId)
+     fun  getMediumNotes(currentUserId: String?): LiveData<List<Notes>> = dao.getMediumNotes(currentUserId)
+     fun getLowNotes(currentUserId: String?): LiveData<List<Notes>> = dao.getLowNotes(currentUserId)
 
     suspend fun insertNotes(notes:Notes){
         dao.insertNotes(notes)

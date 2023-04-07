@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import com.example.notes.Database.NotesDatabase
 import com.example.notes.Model.Notes
 import com.example.notes.Repository.NotesRepository
+import com.google.firebase.auth.FirebaseAuth
 
 class NotesViewModel(application: Application) :AndroidViewModel(application){
 
@@ -19,10 +20,12 @@ class NotesViewModel(application: Application) :AndroidViewModel(application){
         repository.insertNotes(notes)
     }
 
-      fun getNotes(): LiveData<List<Notes>> = repository.getAllNotes()
-     fun getHighNotes(): LiveData<List<Notes>> = repository.getHighNotes()
-     fun  getMediumNotes(): LiveData<List<Notes>> = repository.getMediumNotes()
-     fun getLowNotes(): LiveData<List<Notes>> = repository.getLowNotes()
+    private val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
+
+     fun getNotes(): LiveData<List<Notes>> = repository.getAllNotes(currentUserId)
+     fun getHighNotes(): LiveData<List<Notes>> = repository.getHighNotes(currentUserId)
+     fun  getMediumNotes(): LiveData<List<Notes>> = repository.getMediumNotes(currentUserId)
+     fun getLowNotes(): LiveData<List<Notes>> = repository.getLowNotes(currentUserId)
 
 
      suspend fun deleteNotes(id:Int){

@@ -98,7 +98,7 @@ class EditFragment : Fragment() {
             notes = notes,
             date= dateTime.toString(),
             priority = priority,
-            userId = FirebaseAuth.getInstance().currentUser!!.uid
+            currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
         )
         viewModel.updateNotes(data)
         Toast.makeText(requireContext(), "Notes Updated Successfully", Toast.LENGTH_SHORT).show()
