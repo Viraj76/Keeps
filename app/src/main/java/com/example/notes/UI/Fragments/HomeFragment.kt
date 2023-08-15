@@ -8,7 +8,6 @@ import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
-;
 import androidx.core.app.NotificationCompat.getColor
 import androidx.core.content.res.ResourcesCompat.getColor
 import androidx.fragment.app.Fragment
@@ -157,7 +156,6 @@ class HomeFragment : Fragment() {
             R.id.logoutIcon ->{
                 val builder = AlertDialog.Builder(requireActivity())
                 val alertDialog = builder.create()
-
                 builder
                     .setTitle("Log Out")
                     .setMessage("Are you sure you want to log out?")

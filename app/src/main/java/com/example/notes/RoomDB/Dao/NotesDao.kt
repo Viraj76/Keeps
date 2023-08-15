@@ -18,7 +18,7 @@ interface NotesDao {
      fun getNotes(currentUserId: String?):LiveData<List<Notes>>
 
 
-    @Query("SELECT * FROM Notes WHERE priority = 3 AND user_id = :currentUserId")
+    @Query("SELECT * FROM Notes WHERE priority = 3 AND user_id = :currentUserId")  //here the colon means , this should be matched with the respective func parameter
      fun getHighNotes(currentUserId: String?):LiveData<List<Notes>>
 
     @Query("SELECT * FROM Notes WHERE priority = :priority AND user_id = :currentUserId ")
