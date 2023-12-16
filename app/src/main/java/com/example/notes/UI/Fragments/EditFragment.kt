@@ -137,33 +137,4 @@ class EditFragment : Fragment() {
         }
         return super.onOptionsItemSelected(item)
     }
-//    @Deprecated("Deprecated in Java")
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        inflater.inflate(R.menu.delete_menu,menu)
-//        super.onCreateOptionsMenu(menu, inflater)
-//    }
-//
-//
-//    @Deprecated("Deprecated in Java")
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        if(item.itemId == R.id.deleteIcon){
-//            val bottomSheetDialog  = BottomSheetDialog(requireContext())
-//            bottomSheetDialog.setContentView(R.layout.dialogue_delete)
-//            val textViewYes=bottomSheetDialog.findViewById<TextView>(R.id.dialogueYes)
-//            val textViewNo=bottomSheetDialog.findViewById<TextView>(R.id.dialogueNo)
-//            textViewYes?.setOnClickListener {
-//                viewModel.deleteNotes(oldNotes.data.id!!)
-//                bottomSheetDialog.dismiss()
-//                Toast.makeText(requireContext(),"Note Deleted Successfully!",Toast.LENGTH_SHORT).show()
-//                findNavController().navigate(R.id.action_editFragment_to_homeFragment2)
-//            }
-//            textViewNo?.setOnClickListener {
-//                bottomSheetDialog.dismiss()
-//            }
-//            bottomSheetDialog.show()
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
-//
-
 }

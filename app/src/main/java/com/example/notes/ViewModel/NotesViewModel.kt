@@ -19,14 +19,12 @@ class NotesViewModel(application: Application) :AndroidViewModel(application){
      suspend fun addNotes(notes: Notes){
         repository.insertNotes(notes)
     }
-
     private val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
 
      fun getNotes(): LiveData<List<Notes>> = repository.getAllNotes(currentUserId)
      fun getHighNotes(): LiveData<List<Notes>> = repository.getHighNotes(currentUserId)
      fun  getMediumNotes(): LiveData<List<Notes>> = repository.getMediumNotes(currentUserId)
      fun getLowNotes(): LiveData<List<Notes>> = repository.getLowNotes(currentUserId)
-
 
      suspend fun deleteNotes(id:Int){
         repository.deleteNotes(id)
